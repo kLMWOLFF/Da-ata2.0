@@ -18,6 +18,17 @@ public class ShakingMargin : MonoBehaviour
 
     public float downAngle = 150f;
 
+    public static ShakingMargin Instance { get; private set; }
+
+    private void Awake()
+    {
+        // Ensure only one instance of ShakingMargin exists
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
