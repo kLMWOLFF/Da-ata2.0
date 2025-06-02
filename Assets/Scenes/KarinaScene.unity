@@ -236,11 +236,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
---- !u!4 &69622935 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 657184242118504721, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-  m_PrefabInstance: {fileID: 69622934}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &69622936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
@@ -346,32 +341,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1243445570}
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
---- !u!1 &240372847 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3963161442757444590, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
-  m_PrefabInstance: {fileID: 343910841}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &240372848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3533765510547266090, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
   m_PrefabInstance: {fileID: 343910841}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &240372849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240372847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ac9bc59fe11f144865dfc53cd1a6af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCenter: {fileID: 69622935}
-  gravityStrength: 5
-  floatForceStrength: 0.2
-  massInfluence: 2
 --- !u!1001 &343910841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,6 +354,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 757146000}
     m_Modifications:
+    - target: {fileID: -446572461196489215, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
+      propertyPath: playerCenter
+      value: 
+      objectReference: {fileID: 30776704}
     - target: {fileID: 1882598879884589371, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
       propertyPath: m_Mass
       value: 2
@@ -440,10 +418,7 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3963161442757444590, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 240372849}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
 --- !u!1001 &398914953
 PrefabInstance:
@@ -616,9 +591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3affe8608bf01418b80bfaa0e3a8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentInputType: 1
+  currentInputType: 0
   controllerNode: 5
-  handRayInteractor: {fileID: 0}
   direction: 0
   margin: 10
   upAngle: 30
@@ -837,6 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: -446572461196489215, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1024,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ac9bc59fe11f144865dfc53cd1a6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCenter: {fileID: 69622935}
+  playerCenter: {fileID: 30776704}
   gravityStrength: 5
   floatForceStrength: 0.2
   massInfluence: 2

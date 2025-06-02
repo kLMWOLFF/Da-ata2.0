@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR;
 
-
 public class ControllerGravityManager : MonoBehaviour
 {
     public enum Direction
@@ -18,9 +17,8 @@ public class ControllerGravityManager : MonoBehaviour
     }
 
     [Header("Input Settings")]
-    public InputType currentInputType = InputType.XRController;
+    public InputType currentInputType = InputType.HandTracking;
     public XRNode controllerNode = XRNode.RightHand;
-    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor handRayInteractor; // Reference to hand ray interactor for hand tracking
 
     [Header("Angle Settings")]
     public Direction direction = Direction.Neutral;
@@ -32,17 +30,14 @@ public class ControllerGravityManager : MonoBehaviour
     public GravityToPlayer gravityScript;
 
     private InputDevice targetDevice;
-    private Transform inputTransform;
 
     void Start()
     {
-        // Get the VR controller device
         if (currentInputType == InputType.XRController)
         {
             targetDevice = InputDevices.GetDeviceAtXRNode(controllerNode);
         }
 
-        // If gravityScript is not assigned, try to find it
         if (gravityScript == null)
         {
             gravityScript = FindObjectOfType<GravityToPlayer>();
@@ -58,29 +53,17 @@ public class ControllerGravityManager : MonoBehaviour
         Vector3 rightDirection = Vector3.right;
         bool inputValid = false;
 
-        if (currentInputType == InputType.XRController)
+        // Get input device if not valid
+        if (!targetDevice.isValid)
         {
-            // Update controller reference if needed
-            if (!targetDevice.isValid)
-            {
-                targetDevice = InputDevices.GetDeviceAtXRNode(controllerNode);
-                return;
-            }
-
-            // Get controller rotation
-            if (targetDevice.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation))
-            {
-                rightDirection = rotation * Vector3.right;
-                inputValid = true;
-            }
+            targetDevice = InputDevices.GetDeviceAtXRNode(controllerNode);
         }
-        else // Hand Tracking
+
+        // Get rotation from the device
+        if (targetDevice.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation))
         {
-            if (handRayInteractor != null)
-            {
-                rightDirection = handRayInteractor.transform.right;
-                inputValid = true;
-            }
+            rightDirection = rotation * Vector3.right;
+            inputValid = true;
         }
 
         if (inputValid)
@@ -89,8 +72,6 @@ public class ControllerGravityManager : MonoBehaviour
             float angle = Vector3.Angle(rightDirection, Vector3.right);
 
             // Update direction based on angle
-            Direction previousDirection = direction;
-
             if (angle < upAngle - margin)
             {
                 direction = Direction.Up;
@@ -107,14 +88,7 @@ public class ControllerGravityManager : MonoBehaviour
             // Update GravityToPlayer script state
             if (gravityScript != null)
             {
-                if (direction == Direction.Up)
-                {
-                    gravityScript.enabled = true;
-                }
-                else if (direction == Direction.Down)
-                {
-                    gravityScript.enabled = false;
-                }
+                gravityScript.enabled = (direction == Direction.Up);
             }
         }
     }
