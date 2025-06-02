@@ -22,11 +22,11 @@ public class GravityToPlayer : MonoBehaviour
 
         ApplyFloating(rb);
 
-        if (ShakingMargin.Instance.direction == ShakingMargin.Direction.Up)
+        if (ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
         {
             AttractToPlayer(rb);
         }
-        else if (ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
+        else if (ShakingMargin.Instance.direction == ShakingMargin.Direction.Up)
         {
             RepelFromPlayer(rb);
         }
