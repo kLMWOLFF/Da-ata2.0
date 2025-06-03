@@ -17,7 +17,7 @@ public class DistanceReaction : MonoBehaviour
     {
         float distance = distanceTracker.distanceToPlayer;
 
-        if (distance > 30f)
+        if (distance > 40f)
         {
             // Stop object motion
             rb.linearVelocity = Vector3.zero;
