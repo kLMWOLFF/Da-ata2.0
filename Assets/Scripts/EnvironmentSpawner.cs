@@ -3,10 +3,9 @@ using UnityEngine;
 public class ConditionalSelfActivator : MonoBehaviour
 {
     [Header("Set these in Inspector")]
-    public GameObject triggeringCD;     // The CD object (Beth1, etc.)
-    public GameObject playerObject;     // The player object
-
-    private bool hasTriggered = false;
+    public string cdName;               // e.g. "Beth1", "Gimel2"
+    public GameObject triggeringCD;
+    public GameObject playerObject;
 
     void Update()
     {
@@ -14,7 +13,7 @@ public class ConditionalSelfActivator : MonoBehaviour
 
         if (IsTouching(triggeringCD, playerObject))
         {
-            ArcanaEnvironmentManager.Instance?.ActivateEnvironment(this.gameObject);
+            ArcanaEnvironmentManager.Instance?.TryActivateEnvironment(cdName, this.gameObject);
         }
     }
 

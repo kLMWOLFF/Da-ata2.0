@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ArcanaEnvironmentManager : MonoBehaviour
@@ -5,31 +6,65 @@ public class ArcanaEnvironmentManager : MonoBehaviour
     public static ArcanaEnvironmentManager Instance { get; private set; }
 
     private GameObject currentActiveEnvironment;
+    private string currentActiveCD;
+
+    [System.Serializable]
+    public class FusionRule
+    {
+        public string cdNameA;
+        public string cdNameB;
+        public GameObject fusionEnvironment;
+    }
+
+    [Header("Fusion Rules")]
+    public List<FusionRule> fusionRules = new List<FusionRule>();
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null && Instance != this) Destroy(gameObject);
+        else Instance = this;
+    }
+
+    public void TryActivateEnvironment(string newCDName, GameObject newEnvironment)
+    {
+        GameObject fusion = TryGetFusion(currentActiveCD, newCDName);
+
+        if (fusion != null)
         {
-            Destroy(gameObject);
+            ActivateEnvironment(fusion);
+            Debug.Log("Fusion triggered: " + currentActiveCD + " + " + newCDName);
         }
         else
         {
-            Instance = this;
+            ActivateEnvironment(newEnvironment);
+            currentActiveCD = newCDName;
         }
     }
 
-    public void ActivateEnvironment(GameObject newEnvironment)
+    void ActivateEnvironment(GameObject env)
     {
-        if (currentActiveEnvironment != null && currentActiveEnvironment != newEnvironment)
+        if (currentActiveEnvironment != null && currentActiveEnvironment != env)
         {
             SetChildrenActive(currentActiveEnvironment, false);
         }
 
-        SetChildrenActive(newEnvironment, true);
-        currentActiveEnvironment = newEnvironment;
+        SetChildrenActive(env, true);
+        currentActiveEnvironment = env;
     }
 
-    private void SetChildrenActive(GameObject parent, bool active)
+    GameObject TryGetFusion(string a, string b)
+    {
+        if (string.IsNullOrEmpty(a) || string.IsNullOrEmpty(b)) return null;
+
+        foreach (var rule in fusionRules)
+        {
+            if ((rule.cdNameA == a && rule.cdNameB == b) || (rule.cdNameA == b && rule.cdNameB == a))
+                return rule.fusionEnvironment;
+        }
+        return null;
+    }
+
+    void SetChildrenActive(GameObject parent, bool active)
     {
         foreach (Transform child in parent.transform)
         {
