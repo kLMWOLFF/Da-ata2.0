@@ -21,7 +21,7 @@ public class EnvironmentParticleController : MonoBehaviour
 
     private IEnumerator FadeToColor(Color targetColor, float duration)
     {
-        var main = ps.main;
+        ParticleSystem.MainModule main = ps.main;
         Color currentColor = main.startColor.color;
 
         float time = 0f;
@@ -30,13 +30,15 @@ public class EnvironmentParticleController : MonoBehaviour
             time += Time.deltaTime;
             Color lerpedColor = Color.Lerp(currentColor, targetColor, time / duration);
 
-            var tempMain = ps.main;
-            tempMain.startColor = lerpedColor;
+            // Update main module with new color
+            main = ps.main;
+            main.startColor = new ParticleSystem.MinMaxGradient(lerpedColor);
 
             yield return null;
         }
 
-        var finalMain = ps.main;
-        finalMain.startColor = targetColor;
+        // Final color
+        main = ps.main;
+        main.startColor = new ParticleSystem.MinMaxGradient(targetColor);
     }
 }
