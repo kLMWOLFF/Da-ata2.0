@@ -10,7 +10,12 @@ public class GravityToPlayer : MonoBehaviour
 
     void Start()
     {
-
+        // find gameobject with tag MainCamera
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        
+            playerCenter = mainCamera.transform;
+        
+        
     }
 
     void FixedUpdate()
