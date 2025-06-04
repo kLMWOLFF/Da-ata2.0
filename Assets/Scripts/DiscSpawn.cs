@@ -41,6 +41,11 @@ public class DiscSpawn : MonoBehaviour
     {
         int index = Random.Range(0, discPrefabs.Length);
         currentDisc = Instantiate(discPrefabs[index], spawnPoint.position, spawnPoint.rotation);
+
+        // Call FloatOnSpawn script
+        LiftOnSpawn floatOnSpawn = currentDisc.GetComponent<LiftOnSpawn>();
+       
+        
     }
 
     void ResetTimer()

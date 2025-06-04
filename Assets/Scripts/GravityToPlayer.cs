@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GravityToPlayer : MonoBehaviour
 {
-    public Transform playerCenter;             // The camera or XR Origin
+    private Transform playerCenter;             // The camera or XR Origin
     public float gravityStrength = 5f;         // How strong the attraction is
     public float floatForceStrength = 0.2f;    // How much it floats around
     public float massInfluence = 2f;           // How much mass affects the gravity force

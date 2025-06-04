@@ -225,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 560168454742473006}
-  - component: {fileID: 1961518606650472949}
+  - component: {fileID: -6840430180711042025}
   m_Layer: 0
   m_Name: MagicianSpawn
   m_TagString: Untagged
@@ -253,7 +253,7 @@ Transform:
   - {fileID: 9090212342976841481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1961518606650472949
+--- !u!114 &-6840430180711042025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,17 +262,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9172401820590499393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7613c081f8424d77ae6622da8758bcc, type: 3}
+  m_Script: {fileID: 11500000, guid: 47e9fb19f970c0d42a4074b44723f793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activateAll: 1
-  delay: 5
-  randomizePosition: 0
-  minX: 0
-  maxX: 30
-  minY: 0
-  maxY: 30
-  fixedZ: 0
+  cdName: Beth1
+  environmentToActivate: {fileID: 5899080794757234393, guid: c3acefb73b02b46b5ba62cae87ca9140, type: 3}
 --- !u!1001 &188373712800567584
 PrefabInstance:
   m_ObjectHideFlags: 0

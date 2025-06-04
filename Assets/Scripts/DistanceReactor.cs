@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DistanceReaction : MonoBehaviour
 {
-    public DistanceToPlayer distanceTracker;
+    private DistanceToPlayer distanceTracker;
     private Rigidbody rb;
 
     public bool allowAttraction = true;
@@ -10,6 +10,10 @@ public class DistanceReaction : MonoBehaviour
 
     void Start()
     {
+// find script DistanceToPlayer from the same gameobject
+        distanceTracker = GetComponent<DistanceToPlayer>();
+        
+
         rb = GetComponent<Rigidbody>();
     }
 
