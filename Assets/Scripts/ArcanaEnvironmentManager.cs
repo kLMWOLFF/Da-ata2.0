@@ -16,8 +16,21 @@ public class ArcanaEnvironmentManager : MonoBehaviour
         public GameObject fusionEnvironment;
     }
 
+    [System.Serializable]
+    public class EnvironmentColor
+    {
+        public GameObject environmentPrefab;
+        public Color color;
+    }
+
     [Header("Fusion Rules")]
     public List<FusionRule> fusionRules = new List<FusionRule>();
+
+    [Header("Environment Colors")]
+    public List<EnvironmentColor> environmentColors = new List<EnvironmentColor>();
+
+    [Header("References")]
+    public EnvironmentParticleController particleController; // Assign in inspector
 
     void Awake()
     {
@@ -50,6 +63,16 @@ public class ArcanaEnvironmentManager : MonoBehaviour
 
         SetChildrenActive(env, true);
         currentActiveEnvironment = env;
+
+        UpdateParticleColor(env);
+    }
+
+    void SetChildrenActive(GameObject parent, bool active)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(active);
+        }
     }
 
     GameObject TryGetFusion(string a, string b)
@@ -64,11 +87,15 @@ public class ArcanaEnvironmentManager : MonoBehaviour
         return null;
     }
 
-    void SetChildrenActive(GameObject parent, bool active)
+    void UpdateParticleColor(GameObject env)
     {
-        foreach (Transform child in parent.transform)
+        foreach (var entry in environmentColors)
         {
-            child.gameObject.SetActive(active);
+            if (entry.environmentPrefab == env)
+            {
+                particleController?.SetParticleColor(entry.color);
+                break;
+            }
         }
     }
 }
