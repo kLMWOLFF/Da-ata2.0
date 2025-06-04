@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 2243089720553491647}
   - component: {fileID: 8693473399245284240}
   - component: {fileID: 3861064116838722914}
+  - component: {fileID: -4951564860332197344}
   m_Layer: 0
   m_Name: Disc
   m_TagString: GravityObjects
@@ -347,3 +348,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 20
+--- !u!114 &-4951564860332197344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054933362032797230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf73fbdbe0774341b47d929d1c70de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liftHeight: 7
+  liftDuration: 1

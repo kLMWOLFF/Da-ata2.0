@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DiscDestroy : MonoBehaviour
 {
-    public float lifetime = 20f;
-    private float timer = 0f;
+    public float lifetime = 40f;
+     private float timer = 0f;
 
     private DiscSpawn spawner;
 
@@ -24,7 +24,7 @@ public class DiscDestroy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("MainCamera"))
         {
             NotifySpawnerAndDestroy();
         }

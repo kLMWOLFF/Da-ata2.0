@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - GravityObjects
+  - Disc
   layers:
   - Default
   - TransparentFX
