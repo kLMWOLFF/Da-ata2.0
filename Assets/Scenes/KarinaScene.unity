@@ -2395,7 +2395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5899080794757234393, guid: fbd554876f907421f9cba25469ae27d7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6527525754755163235, guid: fbd554876f907421f9cba25469ae27d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6361,7 +6361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1349295855
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -12197,7 +12197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5899080794757234393, guid: 02922ff47374c499f9ae4c07cf4ebd32, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6527525754755163235, guid: 02922ff47374c499f9ae4c07cf4ebd32, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12838,7 +12838,7 @@ MonoBehaviour:
     color: {r: 0, g: 1, b: 1, a: 0}
   - environmentPrefab: {fileID: 871113590}
     color: {r: 0.37635612, g: 0, b: 1, a: 0}
-  particleController: {fileID: 0}
+  particleController: {fileID: 1349295858}
 --- !u!4 &1686593859
 Transform:
   m_ObjectHideFlags: 0
@@ -14008,7 +14008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5899080794757234393, guid: 6bd66966ae758458bb1c3bc55ef16bb5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6527525754755163235, guid: 6bd66966ae758458bb1c3bc55ef16bb5, type: 3}
       propertyPath: m_LocalPosition.x
