@@ -3,42 +3,32 @@ using System.Collections;
 
 public class EnvironmentParticleController : MonoBehaviour
 {
-    private ParticleSystem ps;
-    private Coroutine colorChangeRoutine;
+    ParticleSystem ps;
+    Coroutine fade;
+    Color currentColor;
 
     void Awake()
     {
         ps = GetComponent<ParticleSystem>();
+        currentColor = ps.main.startColor.color;
     }
 
-    public void SetParticleColor(Color newColor, float duration = 1f)
+    public void SetParticleColor(Color target, float duration = 1f)
     {
-        if (colorChangeRoutine != null)
-            StopCoroutine(colorChangeRoutine);
-
-        colorChangeRoutine = StartCoroutine(FadeToColor(newColor, duration));
+        if (fade != null) StopCoroutine(fade);
+        fade = StartCoroutine(Fade(target, duration));
     }
 
-    private IEnumerator FadeToColor(Color targetColor, float duration)
+    IEnumerator Fade(Color target, float d)
     {
-        ParticleSystem.MainModule main = ps.main;
-        Color currentColor = main.startColor.color;
-
-        float time = 0f;
-        while (time < duration)
+        Color start = currentColor;
+        for (float t = 0; t < d; t += Time.deltaTime)
         {
-            time += Time.deltaTime;
-            Color lerpedColor = Color.Lerp(currentColor, targetColor, time / duration);
-
-            // Update main module with new color
-            main = ps.main;
-            main.startColor = new ParticleSystem.MinMaxGradient(lerpedColor);
-
+            currentColor = Color.Lerp(start, target, t / d);
+            var m = ps.main; m.startColor = currentColor;
             yield return null;
         }
-
-        // Final color
-        main = ps.main;
-        main.startColor = new ParticleSystem.MinMaxGradient(targetColor);
+        currentColor = target;
+        var mFinal = ps.main; mFinal.startColor = currentColor;
     }
 }
