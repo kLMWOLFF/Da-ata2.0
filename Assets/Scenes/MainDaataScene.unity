@@ -981,7 +981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1783642752694874454, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: discPrefabs.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1783642752694874454, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: 'discPrefabs.Array.data[0]'
