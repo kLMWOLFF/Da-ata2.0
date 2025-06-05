@@ -203,6 +203,9 @@ PrefabInstance:
       addedObject: {fileID: 9054784708327917916}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dcddbf0d42bb479393b44b53bdb9ed8, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1027940918809004820}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dcddbf0d42bb479393b44b53bdb9ed8, type: 3}
+      insertIndex: -1
       addedObject: {fileID: -5989986414263311775}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dcddbf0d42bb479393b44b53bdb9ed8, type: 3}
       insertIndex: -1
@@ -212,10 +215,10 @@ PrefabInstance:
       addedObject: {fileID: 6341062544667262059}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dcddbf0d42bb479393b44b53bdb9ed8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8561106716003239722}
+      addedObject: {fileID: 7729728951910012289}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dcddbf0d42bb479393b44b53bdb9ed8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7729728951910012289}
+      addedObject: {fileID: -3163860540209635608}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dcddbf0d42bb479393b44b53bdb9ed8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8269518554032121851}
@@ -241,6 +244,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 40
+  timer: 0
+--- !u!114 &1027940918809004820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899080794757234393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11ce434a3b29e543ac9015efc001708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discDestroy: {fileID: 0}
+  blinkSpeed: 0.1
 --- !u!114 &-5989986414263311775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,20 +302,6 @@ MonoBehaviour:
   gravityStrength: 5
   floatForceStrength: 0.2
   massInfluence: 2
---- !u!114 &8561106716003239722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5899080794757234393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf73fbdbe0774341b47d929d1c70de2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  liftHeight: 7
-  liftDuration: 1
 --- !u!114 &7729728951910012289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +316,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinSpeed: 0.1
   targetSpeed: 0.1
+--- !u!114 &-3163860540209635608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899080794757234393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf73fbdbe0774341b47d929d1c70de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liftHeight: 2
+  liftDuration: 1
 --- !u!54 &8269518554032121851
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class DiscSpawn : MonoBehaviour
 
         float distance = distanceScript.distanceToPlayer;
 
-        if (distance > 10f && distance < 25f)
+        if (distance > 10f && distance < 35f)
         {
             spawnTimer -= Time.deltaTime;
             if (spawnTimer <= 0f)
