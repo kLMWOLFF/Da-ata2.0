@@ -981,7 +981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1783642752694874454, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: discPrefabs.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1783642752694874454, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: 'discPrefabs.Array.data[0]'
@@ -990,7 +990,15 @@ PrefabInstance:
     - target: {fileID: 1783642752694874454, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: 'discPrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 3963161442757444590, guid: e5b7bd460f94d0c42aa2752b38fa8ea9, type: 3}
+      objectReference: {fileID: 5899080794757234393, guid: fbd554876f907421f9cba25469ae27d7, type: 3}
+    - target: {fileID: 1783642752694874454, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
+      propertyPath: 'discPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5899080794757234393, guid: 6bd66966ae758458bb1c3bc55ef16bb5, type: 3}
+    - target: {fileID: 1783642752694874454, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
+      propertyPath: 'discPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5899080794757234393, guid: 02922ff47374c499f9ae4c07cf4ebd32, type: 3}
     - target: {fileID: 2017306166591929281, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: playerCenter
       value: 
@@ -998,6 +1006,10 @@ PrefabInstance:
     - target: {fileID: 2941950191766039229, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: m_LocalPosition.z
       value: 5.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133189385135829468, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6918694820956305571, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4241,7 +4253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7071374771550232596, guid: c9dfd285d7f23424a84b924523a3afa0, type: 3}
       propertyPath: m_Name
-      value: EmperorSpawn
+      value: Emperor
       objectReference: {fileID: 0}
     - target: {fileID: 8625423449877692291, guid: c9dfd285d7f23424a84b924523a3afa0, type: 3}
       propertyPath: m_LocalScale.y
@@ -4345,9 +4357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7613c081f8424d77ae6622da8758bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cdName: 
-  triggeringCD: {fileID: 0}
-  playerObject: {fileID: 0}
+  cdName: Heh4
+  triggeringCD: {fileID: 5899080794757234393, guid: 02922ff47374c499f9ae4c07cf4ebd32, type: 3}
+  playerObject: {fileID: 894460060}
 --- !u!1001 &855042520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4556,7 +4568,7 @@ CapsuleCollider:
   m_Radius: 0.470272
   m_Height: 1.7
   m_Direction: 1
-  m_Center: {x: 0.09612268, y: -0.33916974, z: 0.28360534}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &894460064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4646,6 +4658,8 @@ MonoBehaviour:
   - {fileID: 1216252862}
   - {fileID: 1340359258}
   - {fileID: 819559406}
+  soundEffects:
+  - {fileID: 894460071}
 --- !u!82 &894460071
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5071,7 +5085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9172401820590499393, guid: 28889aef3cb7b47ca9d0d6fab2baf819, type: 3}
       propertyPath: m_Name
-      value: MagicianSpawn
+      value: Magician
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -6198,7 +6212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7477362565072233909, guid: 9bac116ab604f42fb98b246adda9c500, type: 3}
       propertyPath: m_Name
-      value: EmpressSpawn
+      value: Empress
       objectReference: {fileID: 0}
     - target: {fileID: 7810277153607175108, guid: 9bac116ab604f42fb98b246adda9c500, type: 3}
       propertyPath: m_IsActive
@@ -11571,7 +11585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197293292405508418, guid: 133e4642e5cd34c7aae57d6c6ffbe24c, type: 3}
       propertyPath: m_Name
-      value: HierophantSpawn
+      value: Hierophant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -12197,7 +12211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2976506029050716067, guid: 3aab8cbfce296459bae9a09478a439e4, type: 3}
       propertyPath: m_Name
-      value: LoversSpawn
+      value: Lovers
       objectReference: {fileID: 0}
     - target: {fileID: 4481573237253382717, guid: 3aab8cbfce296459bae9a09478a439e4, type: 3}
       propertyPath: m_IsActive
@@ -13223,7 +13237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703912600773903982, guid: 733f540be786e4ba09c5e897375ba139, type: 3}
       propertyPath: m_Name
-      value: HighPriestessSpawn
+      value: HighPriestess
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16133,6 +16147,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 128721069}
-  - {fileID: 1231138152}
   - {fileID: 808793184}
+  - {fileID: 1231138152}
   - {fileID: 1610075159}

@@ -43,6 +43,7 @@ public class DiscSpawn : MonoBehaviour
         currentDisc = Instantiate(discPrefabs[index], spawnPoint.position, spawnPoint.rotation);
         // give this instance the name of its prefab
         currentDisc.name = discPrefabs[index].name;
+        Debug.Log("daata Spawned disc: " + currentDisc.name);
 
         // Call FloatOnSpawn script
         LiftOnSpawn floatOnSpawn = currentDisc.GetComponent<LiftOnSpawn>();
