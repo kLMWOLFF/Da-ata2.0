@@ -21,7 +21,7 @@ public class BlinkOnTimer : MonoBehaviour
         {
             Debug.LogError("No GameObject with tag 'Disc' found.");
         }
-            
+
     }
 
     void Update()
