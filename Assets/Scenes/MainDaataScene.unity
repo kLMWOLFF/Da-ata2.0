@@ -11883,7 +11883,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d308d3b8a2300401d80fe4e3a05dd76e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 74260acd8eb3c4ede81c47a092906f36, type: 2}
+      objectReference: {fileID: 2100000, guid: 65776f9d1fba84398a11f0177fc575b8, type: 2}
     - target: {fileID: 919132149155446097, guid: d308d3b8a2300401d80fe4e3a05dd76e, type: 3}
       propertyPath: m_Name
       value: ZaHandoAnimation
@@ -13533,12 +13533,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloud: {fileID: 1958407023}
-  tutorialMesh: {fileID: 579709326}
+  hand: {fileID: 579709326}
   pushSound: {fileID: 1487020312}
   pullSound: {fileID: 1487020313}
   distance: 2
   duration: 10
   oscillations: 2
+  glowColor: {r: 0, g: 0.9999995, b: 1, a: 1}
+  glowIntensity: 3
 --- !u!4 &1487020315
 Transform:
   m_ObjectHideFlags: 0
