@@ -2,28 +2,37 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
+    [Header("References")]
     public GameObject cloud;
-    public GameObject tutorialMesh;
+    public GameObject hand;
 
+    [Header("Sounds")]
     public AudioSource pushSound;
     public AudioSource pullSound;
 
+    [Header("Cloud Motion")]
     public float distance = 2f;
     public float duration = 10f;
     public int oscillations = 2;
 
+    [Header("Hand Glow")]
+    public Color glowColor = Color.cyan;
+    public float glowIntensity = 3f; // Max brightness
+
     private Vector3 startPosition;
     private float timeElapsed;
-    private bool isTutorialRunning = true;
+    private float lastZ;
 
     private GravityToPlayer gravityScript;
-    private float lastZ = 0f;
+    private Material handMaterial;
+    private Color baseEmission;
+    private bool tutorialFinished = false;
 
     void Start()
     {
-        if (cloud == null || tutorialMesh == null)
+        if (!cloud || !hand)
         {
-            Debug.LogError("Assign both cloud and tutorialMesh.");
+            Debug.LogError("Assign both cloud and hand.");
             enabled = false;
             return;
         }
@@ -31,25 +40,39 @@ public class Tutorial : MonoBehaviour
         startPosition = cloud.transform.position;
 
         gravityScript = cloud.GetComponent<GravityToPlayer>();
-        if (gravityScript != null)
-            gravityScript.enabled = false;
+        if (gravityScript) gravityScript.enabled = false;
 
-        tutorialMesh.SetActive(true);
+        hand.SetActive(true);
+
+        Renderer handRenderer = hand.GetComponent<Renderer>();
+        if (handRenderer)
+        {
+            handMaterial = handRenderer.material; // Unique instance
+            baseEmission = handMaterial.GetColor("_EmissionColor");
+            handMaterial.EnableKeyword("_EMISSION");
+        }
     }
 
     void Update()
     {
-        if (!isTutorialRunning) return;
-
         timeElapsed += Time.deltaTime;
+
+        if (handMaterial)
+        {
+            // Smooth fade on/off every 2 seconds (1s fade in, 1s fade out)
+            float cycle = Mathf.PingPong(Time.time, 2f) / 2f;
+            Color emission = Color.Lerp(baseEmission, glowColor * glowIntensity, cycle);
+            handMaterial.SetColor("_EmissionColor", emission);
+        }
 
         if (timeElapsed < duration)
         {
+            // Move cloud back and forth
             float phase = Mathf.Sin((timeElapsed / duration) * oscillations * 2 * Mathf.PI);
             float zOffset = phase * (distance / 2);
             cloud.transform.position = startPosition + new Vector3(0, 0, zOffset);
 
-            // Play sound on direction change
+            // Push/pull sounds
             if (zOffset > lastZ && pushSound && !pushSound.isPlaying)
                 pushSound.Play();
             else if (zOffset < lastZ && pullSound && !pullSound.isPlaying)
@@ -57,15 +80,14 @@ public class Tutorial : MonoBehaviour
 
             lastZ = zOffset;
         }
-        else
+        else if (!tutorialFinished)
         {
+            // End tutorial
             cloud.transform.position = startPosition;
-            tutorialMesh.SetActive(false);
+            if (gravityScript) gravityScript.enabled = true;
 
-            if (gravityScript != null)
-                gravityScript.enabled = true;
-
-            isTutorialRunning = false;
+            hand.SetActive(false);
+            tutorialFinished = true;
             enabled = false;
         }
     }
