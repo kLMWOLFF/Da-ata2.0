@@ -16,6 +16,7 @@ public class GameOverByDistance : MonoBehaviour
     [Header("Distance & Timing Settings")]
     public float triggerDistance = 7f;
     public float timeToTrigger = 5f;
+    public float gracePeriod = 10f;
     public float effectDuration = 1.5f;
 
     [Header("Scale Settings")]
@@ -24,11 +25,19 @@ public class GameOverByDistance : MonoBehaviour
 
     private float currentTime = 0f;
     private bool gameOverTriggered = false;
+    private float timeSinceStart = 0f;
 
     void Update()
     {
         if (gameOverTriggered || player == null || cloud == null)
             return;
+
+        timeSinceStart += Time.deltaTime;
+
+        if (timeSinceStart < gracePeriod)
+        {
+            return; // Grace period active — no checks yet
+        }
 
         float distance = Vector3.Distance(player.transform.position, cloud.transform.position);
 
