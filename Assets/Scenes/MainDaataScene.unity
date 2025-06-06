@@ -13382,7 +13382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7da3b91ccc143a1a208bf4869ef5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloud: {fileID: 1958407023}
+  cloud: {fileID: 0}
   hand: {fileID: 579709326}
   pushSound: {fileID: 1487020312}
   pullSound: {fileID: 1487020313}
@@ -13403,7 +13403,8 @@ Transform:
   m_LocalPosition: {x: -0.45882213, y: 0.31751746, z: 0.5924909}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2038581333}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1501568635
@@ -15574,11 +15575,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.026276011
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1958407023 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1170805011899633712, guid: 91112945620ed9d4baf93703b825ccea, type: 3}
-  m_PrefabInstance: {fileID: 299806767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2006653982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15899,13 +15895,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038581332}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 1.39, z: 2.04}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.37882215, y: 1.0724826, z: 1.447509}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 579709327}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1487020315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2039397346
 PrefabInstance:
@@ -16509,6 +16505,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 222624121507496820, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 222624121507496820, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 222624121507496820, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 222624121507496820, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       propertyPath: ShapeModule.radiusThickness
       value: 1
       objectReference: {fileID: 0}
@@ -16644,4 +16652,3 @@ SceneRoots:
   - {fileID: 1231138152}
   - {fileID: 1610075159}
   - {fileID: 1487020315}
-  - {fileID: 2038581333}
