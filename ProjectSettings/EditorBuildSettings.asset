@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainDaataScene.unity
+    guid: 9f34a8d0c2c3ccc42bda98bf24aefdf7
   - enabled: 0
     path: Assets/Scenes/KarinaScene.unity
     guid: 45cc294e0c8b5ed46b4dd43298936b13
   - enabled: 0
     path: Assets/Scenes/TitleScreen.unity
     guid: bb0297bfa87a8479db809a765085da09
-  - enabled: 1
-    path: Assets/Scenes/MainDaataScene.unity
-    guid: 9f34a8d0c2c3ccc42bda98bf24aefdf7
   - enabled: 0
     path: Assets/Scenes/SampleScene/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
