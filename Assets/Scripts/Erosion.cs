@@ -3,14 +3,24 @@ using UnityEngine;
 public class UpDirectionCloudTrigger : MonoBehaviour
 {
     public float requiredHoldTime = 15f;
-    public GameObject cloudInScene; // This is the DISABLED cloud object in your scene hierarchy
+    public GameObject cloudInScene;               // Drag the disabled cloud object here
+    public GameObject targetEnvironment;          // Drag the specific environment this logic should apply to
 
     private float upHoldTimer = 0f;
     private bool cloudActivated = false;
 
     void Update()
     {
-        if (ShakingMargin.Instance != null && ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
+        // Make sure the right environment is active
+        if (ArcanaEnvironmentManager.Instance == null || ArcanaEnvironmentManager.Instance.GetCurrentEnvironment() != targetEnvironment)
+        {
+            upHoldTimer = 0f;
+            cloudActivated = false;
+            return;
+        }
+
+        // Only count when direction is Up
+        if (ShakingMargin.Instance != null && ShakingMargin.Instance.direction == ShakingMargin.Direction.Up)
         {
             upHoldTimer += Time.deltaTime;
 
@@ -29,27 +39,20 @@ public class UpDirectionCloudTrigger : MonoBehaviour
 
     void TriggerCloud()
     {
-        // Deactivate current environment
-        if (ArcanaEnvironmentManager.Instance != null)
+        // Deactivate the current environment
+        if (targetEnvironment != null)
         {
-            var currentEnv = typeof(ArcanaEnvironmentManager)
-                .GetField("currentActiveEnvironment", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                ?.GetValue(ArcanaEnvironmentManager.Instance) as GameObject;
-
-            if (currentEnv != null)
-            {
-                currentEnv.SetActive(false);
-            }
+            targetEnvironment.SetActive(false);
         }
 
-        // Activate the disabled cloud in the scene
+        // Activate the in-scene cloud
         if (cloudInScene != null)
         {
             cloudInScene.SetActive(true);
         }
         else
         {
-            Debug.LogWarning("cloudInScene not assigned in UpDirectionCloudTrigger.");
+            Debug.LogWarning("cloudInScene not assigned.");
         }
     }
 }

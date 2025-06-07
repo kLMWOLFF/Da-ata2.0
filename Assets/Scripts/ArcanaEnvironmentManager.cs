@@ -111,4 +111,10 @@ public class ArcanaEnvironmentManager : MonoBehaviour
             }
         }
     }
+
+    // ✅ NEW: Getter for the current active environment
+    public GameObject GetCurrentEnvironment()
+    {
+        return currentActiveEnvironment;
+    }
 }
