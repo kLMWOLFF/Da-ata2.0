@@ -16762,7 +16762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7653108223121546457, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7653108223121546457, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16824,12 +16824,12 @@ MonoBehaviour:
   player: {fileID: 894460060}
   cloud: {fileID: 2674427309634686577}
   gameOverSphere: {fileID: 877737191}
-  triggerDistance: 7
+  triggerDistance: 5
   timeToTrigger: 5
-  gracePeriod: 10
+  gracePeriod: 20
   effectDuration: 1.5
   shrinkMultiplier: 0.5
-  growMultiplier: 1.5
+  growMultiplier: 3
 --- !u!114 &2674427309634686579
 MonoBehaviour:
   m_ObjectHideFlags: 0
