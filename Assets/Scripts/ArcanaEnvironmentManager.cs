@@ -29,9 +29,6 @@ public class ArcanaEnvironmentManager : MonoBehaviour
     [Header("Environment Colors")]
     public List<EnvironmentColor> environmentColors = new List<EnvironmentColor>();
 
-    [Header("References")]
-    public EnvironmentParticleController particleController; // Assign in inspector
-
     void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
@@ -42,18 +39,14 @@ public class ArcanaEnvironmentManager : MonoBehaviour
     {
         GameObject fusion = TryGetFusion(currentActiveCD, newCDName);
 
-        // If there's a possible fusion with the current active CD and the new one
         if (fusion != null)
         {
-            // activate the fusion environment
             ActivateEnvironment(fusion);
             Debug.Log("Fusion triggered: " + currentActiveCD + " + " + newCDName);
             return true;
         }
-        // otherwise, if this enivornment is related to the new cdName
         else if (newEnvironment.GetComponent<ConditionalSelfActivator>().cdName == newCDName)
         {
-            // activate the new environment
             ActivateEnvironment(newEnvironment);
             currentActiveCD = newCDName;
             return true;
@@ -61,7 +54,7 @@ public class ArcanaEnvironmentManager : MonoBehaviour
         else
         {
             Debug.LogWarning("No fusion or environment relation " + newCDName + " and " + newEnvironment.name);
-            return false; // No valid environment to activate
+            return false;
         }
     }
 
@@ -104,7 +97,16 @@ public class ArcanaEnvironmentManager : MonoBehaviour
         {
             if (entry.environmentPrefab == env)
             {
-                particleController?.SetParticleColor(entry.color);
+                // Try to find an EnvironmentParticleController on the activated environment or its children
+                EnvironmentParticleController controller = env.GetComponentInChildren<EnvironmentParticleController>();
+                if (controller != null)
+                {
+                    controller.SetTargetColor(entry.color);
+                }
+                else
+                {
+                    Debug.LogWarning("No EnvironmentParticleController found on " + env.name);
+                }
                 break;
             }
         }

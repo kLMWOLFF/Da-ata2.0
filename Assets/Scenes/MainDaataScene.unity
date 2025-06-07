@@ -3273,7 +3273,6 @@ MonoBehaviour:
     color: {r: 0, g: 1, b: 1, a: 0}
   - environmentPrefab: {fileID: 819559406}
     color: {r: 0.37635612, g: 0, b: 1, a: 0}
-  particleController: {fileID: 1213886838}
 --- !u!1001 &696400750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7155,6 +7154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37c0bfd3378946b694776a9bcac3414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeSpeed: 2
 --- !u!199 &1213886839
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -8499,7 +8499,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
