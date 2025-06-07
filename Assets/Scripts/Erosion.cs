@@ -2,57 +2,84 @@ using UnityEngine;
 
 public class UpDirectionCloudTrigger : MonoBehaviour
 {
-    public float requiredHoldTime = 15f;
-    public GameObject cloudInScene;               // Drag the disabled cloud object here
-    public GameObject targetEnvironment;          // Drag the specific environment this logic should apply to
+    public GameObject cloudToSpawn;
+    public GameObject specificEnvironmentToWatch;
 
-    private float upHoldTimer = 0f;
-    private bool cloudActivated = false;
+    public float holdDuration = 7f;
+    public float blinkStartTime = 4f;
+    public float blinkInterval = 0.2f;
+
+    private float upTime = 0f;
+    private bool hasTriggered = false;
+    private bool isBlinking = false;
+    private float nextBlinkTime = 0f;
+
+    private GameObject currentEnvironment;
 
     void Update()
     {
-        // Make sure the right environment is active
-        if (ArcanaEnvironmentManager.Instance == null || ArcanaEnvironmentManager.Instance.GetCurrentEnvironment() != targetEnvironment)
-        {
-            upHoldTimer = 0f;
-            cloudActivated = false;
+        if (ArcanaEnvironmentManager.Instance == null) return;
+
+        currentEnvironment = ArcanaEnvironmentManager.Instance.GetCurrentEnvironment();
+        if (currentEnvironment != specificEnvironmentToWatch) {
+            upTime = 0f;
+            ResetBlinking();
             return;
         }
 
-        // Only count when direction is Up
-        if (ShakingMargin.Instance != null && ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
+        if (ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
         {
-            upHoldTimer += Time.deltaTime;
+            upTime += Time.deltaTime;
 
-            if (upHoldTimer >= requiredHoldTime && !cloudActivated)
+            // Start blinking at 4 seconds
+            if (upTime >= blinkStartTime && upTime < holdDuration)
             {
-                TriggerCloud();
-                cloudActivated = true;
+                if (!isBlinking)
+                {
+                    isBlinking = true;
+                    nextBlinkTime = Time.time + blinkInterval;
+                }
+
+                if (Time.time >= nextBlinkTime && currentEnvironment != null)
+                {
+                    // Toggle visibility
+                    bool isActive = currentEnvironment.activeSelf;
+                    currentEnvironment.SetActive(!isActive);
+                    nextBlinkTime = Time.time + blinkInterval;
+                }
+            }
+
+            // Final trigger at 7 seconds
+            if (upTime >= holdDuration && !hasTriggered)
+            {
+                if (currentEnvironment != null)
+                {
+                    currentEnvironment.SetActive(false);
+                }
+
+                if (cloudToSpawn != null)
+                {
+                    cloudToSpawn.SetActive(true);
+                }
+
+                hasTriggered = true;
             }
         }
         else
         {
-            upHoldTimer = 0f;
-            cloudActivated = false;
+            upTime = 0f;
+            ResetBlinking();
         }
     }
 
-    void TriggerCloud()
+    private void ResetBlinking()
     {
-        // Deactivate the current environment
-        if (targetEnvironment != null)
+        if (isBlinking && currentEnvironment != null && !currentEnvironment.activeSelf)
         {
-            targetEnvironment.SetActive(false);
+            currentEnvironment.SetActive(true);
         }
 
-        // Activate the in-scene cloud
-        if (cloudInScene != null)
-        {
-            cloudInScene.SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning("cloudInScene not assigned.");
-        }
+        isBlinking = false;
+        hasTriggered = false;
     }
 }

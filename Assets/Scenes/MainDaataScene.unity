@@ -17940,9 +17940,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d8fc1d484484f039e0d53bb5e1905d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHoldTime: 5
-  cloudInScene: {fileID: 480097677}
-  targetEnvironment: {fileID: 1216252862}
+  cloudToSpawn: {fileID: 480097677}
+  specificEnvironmentToWatch: {fileID: 1216252862}
+  holdDuration: 7
+  blinkStartTime: 4
+  blinkInterval: 0.2
 --- !u!4 &2138335141
 Transform:
   m_ObjectHideFlags: 0
