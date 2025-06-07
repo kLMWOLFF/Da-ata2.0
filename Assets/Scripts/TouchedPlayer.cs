@@ -40,8 +40,8 @@ public class TouchedPlayer : MonoBehaviour
             }
 
             // play the sound effect
-            //GetComponent<AudioSource>()?.Play();
-            //soundEffects[0]?.Play();
+            GetComponent<AudioSource>()?.Play();
+            soundEffects[0]?.Play();
         }
     }
    
