@@ -1,34 +1,46 @@
 using UnityEngine;
-using System.Collections;
 
+[RequireComponent(typeof(ParticleSystem))]
 public class EnvironmentParticleController : MonoBehaviour
 {
-    ParticleSystem ps;
-    Coroutine fade;
-    Color currentColor;
+    [Tooltip("Speed of the color fade transition.")]
+    public float fadeSpeed = 2f;
+
+    private ParticleSystem ps;
+    private ParticleSystem.MainModule main;
+    private Color currentColor;
+    private Color targetColor;
 
     void Awake()
     {
         ps = GetComponent<ParticleSystem>();
-        currentColor = ps.main.startColor.color;
+        main = ps.main;
+
+        // Initialize with current color
+        currentColor = main.startColor.color;
+        targetColor = currentColor;
+        main.startColor = currentColor;
     }
 
-    public void SetParticleColor(Color target, float duration = 1f)
+    void OnEnable()
     {
-        if (fade != null) StopCoroutine(fade);
-        fade = StartCoroutine(Fade(target, duration));
+        // Refresh main module reference on enable in case of prefab reactivation
+        main = ps.main;
+        main.startColor = currentColor;
     }
 
-    IEnumerator Fade(Color target, float d)
+    void Update()
     {
-        Color start = currentColor;
-        for (float t = 0; t < d; t += Time.deltaTime)
+        if (currentColor != targetColor)
         {
-            currentColor = Color.Lerp(start, target, t / d);
-            var m = ps.main; m.startColor = currentColor;
-            yield return null;
+            currentColor = Color.Lerp(currentColor, targetColor, Time.deltaTime * fadeSpeed);
+            main.startColor = currentColor;
         }
-        currentColor = target;
-        var mFinal = ps.main; mFinal.startColor = currentColor;
+    }
+
+    // Call this when activating the environment to set the new color
+    public void SetTargetColor(Color newColor)
+    {
+        targetColor = newColor;
     }
 }
