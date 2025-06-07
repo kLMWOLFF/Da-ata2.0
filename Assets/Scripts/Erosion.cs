@@ -3,28 +3,27 @@ using UnityEngine;
 public class UpDirectionCloudTrigger : MonoBehaviour
 {
     public float requiredHoldTime = 15f;
-    public GameObject cloudPrefab;
-    public Transform cloudSpawnPoint; // Optional: assign a position to spawn at
+    public GameObject cloudInScene; // This is the DISABLED cloud object in your scene hierarchy
 
     private float upHoldTimer = 0f;
-    private bool cloudSpawned = false;
+    private bool cloudActivated = false;
 
     void Update()
     {
-        if (ShakingMargin.Instance != null && ShakingMargin.Instance.direction == ShakingMargin.Direction.Up)
+        if (ShakingMargin.Instance != null && ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
         {
             upHoldTimer += Time.deltaTime;
 
-            if (upHoldTimer >= requiredHoldTime && !cloudSpawned)
+            if (upHoldTimer >= requiredHoldTime && !cloudActivated)
             {
                 TriggerCloud();
-                cloudSpawned = true;
+                cloudActivated = true;
             }
         }
         else
         {
             upHoldTimer = 0f;
-            cloudSpawned = false;
+            cloudActivated = false;
         }
     }
 
@@ -43,15 +42,14 @@ public class UpDirectionCloudTrigger : MonoBehaviour
             }
         }
 
-        // Spawn cloud
-        if (cloudPrefab != null)
+        // Activate the disabled cloud in the scene
+        if (cloudInScene != null)
         {
-            Vector3 spawnPos = cloudSpawnPoint != null ? cloudSpawnPoint.position : Vector3.zero;
-            Instantiate(cloudPrefab, spawnPos, Quaternion.identity);
+            cloudInScene.SetActive(true);
         }
         else
         {
-            Debug.LogWarning("Cloud prefab not assigned.");
+            Debug.LogWarning("cloudInScene not assigned in UpDirectionCloudTrigger.");
         }
     }
 }
