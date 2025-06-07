@@ -7,6 +7,7 @@ public class DiscSpawn : MonoBehaviour
     public DistanceToPlayer distanceScript;
     public float minDelay = 5f;
     public float maxDelay = 10f;
+    public AudioSource[] soundEffects;
 
     private GameObject currentDisc;
     private float spawnTimer;
@@ -48,6 +49,9 @@ public class DiscSpawn : MonoBehaviour
         // Call FloatOnSpawn script
         LiftOnSpawn floatOnSpawn = currentDisc.GetComponent<LiftOnSpawn>();
        
+       // play the sound effect
+            GetComponent<AudioSource>()?.Play();
+            soundEffects[0]?.Play();
         
     }
 
