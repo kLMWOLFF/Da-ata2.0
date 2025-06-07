@@ -79,7 +79,11 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - _Rotation: 28.571743
+=======
+    - _Rotation: 2.4005284
+>>>>>>> Stashed changes
 =======
     - _Rotation: 2.4005284
 >>>>>>> Stashed changes
