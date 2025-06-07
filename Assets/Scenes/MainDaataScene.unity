@@ -16724,6 +16724,18 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6392899240823192370, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: discPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392899240823192370, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: 'discPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 5899080794757234393, guid: fbd554876f907421f9cba25469ae27d7, type: 3}
+    - target: {fileID: 6392899240823192370, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: 'discPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5899080794757234393, guid: 6bd66966ae758458bb1c3bc55ef16bb5, type: 3}
     - target: {fileID: 6455661856520740580, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       propertyPath: m_SortMode
       value: 0
