@@ -5,16 +5,16 @@ public class Tutorial : MonoBehaviour
     [Header("References")]
     public GameObject cloud;
     public GameObject hand;
-    public GameObject[] handAnimations; // ZaHandoMT etc.
+    public GameObject[] handAnimations; // Assign ZaHandoMT objects here
 
     [Header("Sounds")]
     public AudioSource pushSound;
     public AudioSource pullSound;
 
     [Header("Cloud Motion")]
-    public float distance = 5f;           // Total back-and-forth range
-    public float duration = 10f;          // Oscillation duration
-    public int oscillations = 2;          // How many complete oscillations
+    public float distance = 5f;
+    public float duration = 10f;
+    public int oscillations = 2;
 
     [Header("Hand Glow")]
     public Color glowColor = Color.cyan;
@@ -23,6 +23,7 @@ public class Tutorial : MonoBehaviour
     private Vector3 startPosition;
     private float timeElapsed;
     private float lastZ;
+    private bool movingForward = true;
 
     private GravityToPlayer gravityScript;
     private Material handMaterial;
@@ -39,26 +40,28 @@ public class Tutorial : MonoBehaviour
             return;
         }
 
-        // Store initial cloud position
         startPosition = cloud.transform.position;
-
-        // Disable cloud movement and hand at start
         cloud.transform.position = startPosition;
         hand.SetActive(false);
 
         gravityScript = cloud.GetComponent<GravityToPlayer>();
         if (gravityScript) gravityScript.enabled = false;
 
-        // Start after 3 seconds
+        // Mute all audio globally at start
+        AudioListener.volume = 0f;
+
+        // After 3 seconds, unmute and start tutorial
         Invoke("InitializeTutorial", 3f);
     }
 
     void InitializeTutorial()
     {
+        // Unmute audio globally
+        AudioListener.volume = 1f;
+
         tutorialStarted = true;
         timeElapsed = 0f;
 
-        // Activate hand and its animations
         hand.SetActive(true);
         foreach (GameObject handAnim in handAnimations)
         {
@@ -66,7 +69,6 @@ public class Tutorial : MonoBehaviour
                 handAnim.SetActive(true);
         }
 
-        // Set up glow
         Renderer handRenderer = hand.GetComponent<Renderer>();
         if (handRenderer)
         {
@@ -74,16 +76,18 @@ public class Tutorial : MonoBehaviour
             baseEmission = handMaterial.GetColor("_EmissionColor");
             handMaterial.EnableKeyword("_EMISSION");
         }
+
+        float initialPhase = Mathf.Sin((0f / duration) * oscillations * 2 * Mathf.PI);
+        lastZ = initialPhase * (distance / 2);
     }
 
     void Update()
     {
-        if (!tutorialStarted || tutorialFinished)
+        if (tutorialFinished || !tutorialStarted)
             return;
 
         timeElapsed += Time.deltaTime;
 
-        // Handle hand glow
         if (handMaterial)
         {
             float cycle = Mathf.PingPong(Time.time, 2f) / 2f;
@@ -91,24 +95,27 @@ public class Tutorial : MonoBehaviour
             handMaterial.SetColor("_EmissionColor", emission);
         }
 
-        // Cloud movement during tutorial (after 3s)
         if (timeElapsed < duration)
         {
             float phase = Mathf.Sin((timeElapsed / duration) * oscillations * 2 * Mathf.PI);
-            float zOffset = phase * (distance / 2); // total travel is distance
+            float zOffset = phase * (distance / 2);
             cloud.transform.position = startPosition + new Vector3(0, 0, zOffset);
 
-            // Push/pull audio
-            if (zOffset > lastZ && pushSound && !pushSound.isPlaying)
-                pushSound.Play();
-            else if (zOffset < lastZ && pullSound && !pullSound.isPlaying)
-                pullSound.Play();
+            if (zOffset > lastZ && !movingForward)
+            {
+                movingForward = true;
+                if (pushSound) pushSound.Play();
+            }
+            else if (zOffset < lastZ && movingForward)
+            {
+                movingForward = false;
+                if (pullSound) pullSound.Play();
+            }
 
             lastZ = zOffset;
         }
-        else if (!tutorialFinished)
+        else
         {
-            // Tutorial end: stop cloud, disable hand
             cloud.transform.position = startPosition;
             if (gravityScript) gravityScript.enabled = true;
 
