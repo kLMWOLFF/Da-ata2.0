@@ -3,7 +3,9 @@ using UnityEngine;
 public class Tutorial : MonoBehaviour
 {
     [Header("References")]
-    public GameObject[] cloudFields; // 9 clouds to be assigned in Inspector
+    public GameObject cloud1;
+    public GameObject cloud2;
+    public GameObject cloud3;
     public GameObject hand;
     public GameObject[] handAnimations;
 
@@ -20,52 +22,51 @@ public class Tutorial : MonoBehaviour
     public Color glowColor = Color.cyan;
     public float glowIntensity = 3f;
 
-    private Vector3[,] startPositions = new Vector3[3, 3];
-    private GameObject[,] clouds = new GameObject[3, 3];
-
+    private Vector3[] startPositions = new Vector3[3];
     private float timeElapsed;
     private float lastZ;
     private bool movingForward = true;
 
-    private GravityToPlayer[,] gravityScripts = new GravityToPlayer[3, 3];
+    private GravityToPlayer[] gravityScripts = new GravityToPlayer[3];
     private Material handMaterial;
     private Color baseEmission;
-
     private bool tutorialStarted = false;
     private bool tutorialFinished = false;
 
     void Start()
     {
-        if (cloudFields.Length != 9 || !hand)
+        if (!cloud1 || !cloud2 || !cloud3 || !hand)
         {
-            Debug.LogError("Assign exactly 9 cloud objects and the hand.");
+            Debug.LogError("Assign all three clouds and the hand.");
             enabled = false;
             return;
         }
 
-        // Setup 3x3 grid of clouds
-        for (int i = 0; i < 9; i++)
-        {
-            int x = i % 3;
-            int y = i / 3;
-            clouds[x, y] = cloudFields[i];
-            startPositions[x, y] = cloudFields[i].transform.position;
-            gravityScripts[x, y] = cloudFields[i].GetComponent<GravityToPlayer>();
-            if (gravityScripts[x, y]) gravityScripts[x, y].enabled = false;
-        }
+        startPositions[0] = cloud1.transform.position;
+        startPositions[1] = cloud2.transform.position;
+        startPositions[2] = cloud3.transform.position;
+
+        cloud1.transform.position = startPositions[0];
+        cloud2.transform.position = startPositions[1];
+        cloud3.transform.position = startPositions[2];
 
         hand.SetActive(false);
 
-        // Mute all audio globally at start
-        AudioListener.volume = 0f;
+        gravityScripts[0] = cloud1.GetComponent<GravityToPlayer>();
+        gravityScripts[1] = cloud2.GetComponent<GravityToPlayer>();
+        gravityScripts[2] = cloud3.GetComponent<GravityToPlayer>();
 
-        // After 3 seconds, unmute and start tutorial
+        foreach (var script in gravityScripts)
+        {
+            if (script) script.enabled = false;
+        }
+
+        AudioListener.volume = 0f;
         Invoke("InitializeTutorial", 3f);
     }
 
     void InitializeTutorial()
     {
-        // Unmute audio globally
         AudioListener.volume = 1f;
 
         tutorialStarted = true;
@@ -109,18 +110,10 @@ public class Tutorial : MonoBehaviour
             float phase = Mathf.Sin((timeElapsed / duration) * oscillations * 2 * Mathf.PI);
             float zOffset = phase * (distance / 2);
 
-            for (int x = 0; x < 3; x++)
-            {
-                for (int y = 0; y < 3; y++)
-                {
-                    if (clouds[x, y])
-                    {
-                        clouds[x, y].transform.position = startPositions[x, y] + new Vector3(0, 0, zOffset);
-                    }
-                }
-            }
+            cloud1.transform.position = startPositions[0] + new Vector3(0, 0, zOffset);
+            cloud2.transform.position = startPositions[1] + new Vector3(0, 0, zOffset);
+            cloud3.transform.position = startPositions[2] + new Vector3(0, 0, zOffset);
 
-            // Sound logic
             if (zOffset > lastZ && !movingForward)
             {
                 movingForward = true;
@@ -136,17 +129,13 @@ public class Tutorial : MonoBehaviour
         }
         else
         {
-            // End tutorial
-            for (int x = 0; x < 3; x++)
+            cloud1.transform.position = startPositions[0];
+            cloud2.transform.position = startPositions[1];
+            cloud3.transform.position = startPositions[2];
+
+            foreach (var script in gravityScripts)
             {
-                for (int y = 0; y < 3; y++)
-                {
-                    if (clouds[x, y])
-                    {
-                        clouds[x, y].transform.position = startPositions[x, y];
-                        if (gravityScripts[x, y]) gravityScripts[x, y].enabled = true;
-                    }
-                }
+                if (script) script.enabled = true;
             }
 
             hand.SetActive(false);
