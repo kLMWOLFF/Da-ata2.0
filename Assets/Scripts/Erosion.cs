@@ -20,7 +20,7 @@ public class UpDirectionCloudTrigger : MonoBehaviour
         }
 
         // Only count when direction is Up
-        if (ShakingMargin.Instance != null && ShakingMargin.Instance.direction == ShakingMargin.Direction.Up)
+        if (ShakingMargin.Instance != null && ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
         {
             upHoldTimer += Time.deltaTime;
 
