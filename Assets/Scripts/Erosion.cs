@@ -9,10 +9,12 @@ public class UpDirectionCloudTrigger : MonoBehaviour
     public float blinkStartTime = 4f;
     public float blinkInterval = 0.2f;
 
-    private float upTime = 0f;
+    private float downTime = 0f;
     private bool hasTriggered = false;
     private bool isBlinking = false;
     private float nextBlinkTime = 0f;
+    private bool shouldBlink = false;
+    private bool environmentPermanentlyDisabled = false;
 
     private GameObject currentEnvironment;
 
@@ -21,65 +23,71 @@ public class UpDirectionCloudTrigger : MonoBehaviour
         if (ArcanaEnvironmentManager.Instance == null) return;
 
         currentEnvironment = ArcanaEnvironmentManager.Instance.GetCurrentEnvironment();
-        if (currentEnvironment != specificEnvironmentToWatch) {
-            upTime = 0f;
-            ResetBlinking();
+
+        if (currentEnvironment != specificEnvironmentToWatch)
+        {
+            ResetState();
             return;
         }
 
         if (ShakingMargin.Instance.direction == ShakingMargin.Direction.Down)
         {
-            upTime += Time.deltaTime;
+            downTime += Time.deltaTime;
 
-            // Start blinking at 4 seconds
-            if (upTime >= blinkStartTime && upTime < holdDuration)
+            // Start blinking logic
+            if (downTime >= blinkStartTime && downTime < holdDuration && !hasTriggered && !environmentPermanentlyDisabled)
             {
                 if (!isBlinking)
                 {
                     isBlinking = true;
                     nextBlinkTime = Time.time + blinkInterval;
+                    shouldBlink = currentEnvironment != null && currentEnvironment.activeSelf;
                 }
 
-                if (Time.time >= nextBlinkTime && currentEnvironment != null)
+                if (shouldBlink && Time.time >= nextBlinkTime && currentEnvironment != null)
                 {
-                    // Toggle visibility
-                    bool isActive = currentEnvironment.activeSelf;
-                    currentEnvironment.SetActive(!isActive);
+                    currentEnvironment.SetActive(!currentEnvironment.activeSelf);
                     nextBlinkTime = Time.time + blinkInterval;
                 }
             }
 
-            // Final trigger at 7 seconds
-            if (upTime >= holdDuration && !hasTriggered)
+            // Final action after full hold duration
+            if (downTime >= holdDuration && !hasTriggered)
             {
                 if (currentEnvironment != null)
                 {
-                    currentEnvironment.SetActive(false);
+                    currentEnvironment.SetActive(false); // Fully disable
+                    environmentPermanentlyDisabled = true;
                 }
 
-                if (cloudToSpawn != null)
+                if (cloudToSpawn != null && !cloudToSpawn.activeSelf)
                 {
-                    cloudToSpawn.SetActive(true);
+                    cloudToSpawn.SetActive(true); // Spawn cloud only if not already active
                 }
 
                 hasTriggered = true;
+                isBlinking = false;
             }
         }
         else
         {
-            upTime = 0f;
-            ResetBlinking();
+            ResetState();
         }
     }
 
-    private void ResetBlinking()
+    private void ResetState()
     {
-        if (isBlinking && currentEnvironment != null && !currentEnvironment.activeSelf)
+        downTime = 0f;
+
+        // Only reactivate environment if blinking was active and it hasn't been permanently disabled
+        if (isBlinking && currentEnvironment != null && !environmentPermanentlyDisabled)
         {
             currentEnvironment.SetActive(true);
         }
 
         isBlinking = false;
         hasTriggered = false;
+        shouldBlink = false;
+        environmentPermanentlyDisabled = false;
     }
 }
