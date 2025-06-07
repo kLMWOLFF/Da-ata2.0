@@ -8,6 +8,7 @@ public class UpDirectionCloudTrigger : MonoBehaviour
     public float holdDuration = 7f;
     public float blinkStartTime = 4f;
     public float blinkInterval = 0.2f;
+    public AudioSource[] soundEffects;
 
     private float downTime = 0f;
     private bool hasTriggered = false;
@@ -42,6 +43,9 @@ public class UpDirectionCloudTrigger : MonoBehaviour
                     isBlinking = true;
                     nextBlinkTime = Time.time + blinkInterval;
                     shouldBlink = currentEnvironment != null && currentEnvironment.activeSelf;
+
+                    GetComponent<AudioSource>()?.Play();
+                    soundEffects[0]?.Play();
                 }
 
                 if (shouldBlink && Time.time >= nextBlinkTime && currentEnvironment != null)
