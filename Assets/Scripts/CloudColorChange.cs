@@ -25,6 +25,9 @@ public class CloudColorChange : MonoBehaviour
         Color targetColor = inRange ? insideColor : outsideColor;
 
         currentColor = Color.Lerp(currentColor, targetColor, Time.deltaTime * 0.5f);
-        main.startColor = currentColor;
+        main.startColor = new ParticleSystem.MinMaxGradient(currentColor);
+
+        Debug.Log("Distance to player: " + distanceScript.distanceToPlayer);
+        Debug.Log("Current Color: " + currentColor);
     }
 }

@@ -101,8 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1481a96e6b7cda4419cb7ffb2294379e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpeed: 0.1
-  targetSpeed: 0.1
+  downSpeed: 300
+  upSpeed: -1000
+  neutralSpeed: 100
+  lerpSpeed: 0.1
 --- !u!1001 &6709474401799652232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -322,8 +324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1481a96e6b7cda4419cb7ffb2294379e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpeed: 0.1
-  targetSpeed: 0.1
+  downSpeed: 300
+  upSpeed: -1000
+  neutralSpeed: 100
+  lerpSpeed: 0.1
 --- !u!114 &-3163860540209635608
 MonoBehaviour:
   m_ObjectHideFlags: 0

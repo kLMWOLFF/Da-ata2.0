@@ -62,6 +62,8 @@ public class UpDirectionCloudTrigger : MonoBehaviour
                 {
                     currentEnvironment.SetActive(false); // Fully disable
                     environmentPermanentlyDisabled = true;
+
+                    soundEffects[0]?.Stop();
                 }
 
                 if (cloudToSpawn != null && !cloudToSpawn.activeSelf)

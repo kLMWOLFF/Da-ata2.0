@@ -9,6 +9,7 @@ TagManager:
   - Disc
   - Cloud
   - HandAnimation
+  - environments
   layers:
   - Default
   - TransparentFX
