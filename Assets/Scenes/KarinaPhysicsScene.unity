@@ -13265,7 +13265,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 560168454742473006, guid: 28889aef3cb7b47ca9d0d6fab2baf819, type: 3}
       insertIndex: 16
       addedObject: {fileID: 746733221}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9172401820590499393, guid: 28889aef3cb7b47ca9d0d6fab2baf819, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1197809121}
   m_SourcePrefab: {fileID: 100100000, guid: 28889aef3cb7b47ca9d0d6fab2baf819, type: 3}
 --- !u!4 &1197809119 stripped
 Transform:
@@ -13277,6 +13280,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9172401820590499393, guid: 28889aef3cb7b47ca9d0d6fab2baf819, type: 3}
   m_PrefabInstance: {fileID: 1197809118}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1197809121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197809120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f4f899ae1439b479922e9afb9f63d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkInterval: 1
 --- !u!1 &1220150694
 GameObject:
   m_ObjectHideFlags: 0
@@ -17669,10 +17685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cloudObject: {fileID: 1948752290}
   checkDistance: 35
-  countdownTime: 40
-  blinkInterval: 1
-  liftHeight: 5
-  moveSpeed: 1
+  countdownTime: 15
   moveSound: {fileID: 1928255389}
 --- !u!114 &1928255391
 MonoBehaviour:
@@ -17887,6 +17900,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8806024725229761119, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1948752291}
+    - targetCorrespondingSourceObject: {fileID: 8806024725229761119, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1948752304}
   m_SourcePrefab: {fileID: 100100000, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
 --- !u!4 &1948752289 stripped
 Transform:
@@ -18152,6 +18168,19 @@ MonoBehaviour:
   upSpeed: -250
   neutralSpeed: 25
   lerpSpeed: 0.1
+--- !u!114 &1948752304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948752290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f4f899ae1439b479922e9afb9f63d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkInterval: 1
 --- !u!1001 &1966601680
 PrefabInstance:
   m_ObjectHideFlags: 0
