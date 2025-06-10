@@ -1,25 +1,26 @@
 using UnityEngine;
 
-public class DisappearTimer : MonoBehaviour
+public class LowGravityErosion : MonoBehaviour
 {
     public GameObject cloudObject;
+    public GameObject[] environmentsToDisable; // 👈 Set these manually
     public float checkDistance = 35f;
     public float countdownTime = 15f;
     public AudioSource moveSound;
+    public BlinkEnvironment blinkController; // Drag it in via Inspector!
 
     private float timer;
     private bool countdownStarted = false;
     private bool hasDisappeared = false;
 
     private EnvironmentTracker envTracker;
-    private BlinkController blink;
+    
 
     void Start()
     {
         timer = countdownTime;
         envTracker = FindObjectOfType<EnvironmentTracker>();
-        blink = GetComponent<BlinkController>();
-
+        
         if (envTracker == null)
             Debug.LogError("EnvironmentTracker not found.");
     }
@@ -37,24 +38,27 @@ public class DisappearTimer : MonoBehaviour
 
         float distance = Vector3.Distance(cloudObject.transform.position, transform.position);
         if (distance > checkDistance && !hasDisappeared)
+{
+    if (!countdownStarted)
+    {
+        countdownStarted = true;
+        blinkController?.StartBlinking();
+        if (!moveSound.isPlaying) moveSound.Play();
+    }
+
+    timer -= Time.deltaTime;
+
+    if (timer <= 0f)
+    {
+        foreach (GameObject env in environmentsToDisable)
         {
-            if (!countdownStarted)
-            {
-                countdownStarted = true;
-                blink?.StartBlinking();
-                if (!moveSound.isPlaying) moveSound.Play();
-            }
-
-            timer -= Time.deltaTime;
-
-            if (timer <= 0f)
-            {
-                gameObject.SetActive(false);
-                hasDisappeared = true;
-                blink?.StopBlinking();
-                if (moveSound.isPlaying) moveSound.Stop();
-            }
+            if (env != null) env.SetActive(false);
         }
+        hasDisappeared = true;
+        blinkController?.StopBlinking();
+        if (moveSound.isPlaying) moveSound.Stop();
+    }
+}
         else
         {
             ResetTimer();
@@ -62,12 +66,11 @@ public class DisappearTimer : MonoBehaviour
     }
 
     void ResetTimer()
-    {
-        timer = countdownTime;
-        countdownStarted = false;
-        hasDisappeared = false;
-        blink?.StopBlinking();
-        if (moveSound.isPlaying) moveSound.Stop();
-    }
+{
+    timer = countdownTime;
+    countdownStarted = false;
+    hasDisappeared = false;
+    blinkController?.StopBlinking();
+    if (moveSound != null && moveSound.isPlaying) moveSound.Stop();
 }
-
+}

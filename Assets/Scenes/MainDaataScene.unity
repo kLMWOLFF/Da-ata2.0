@@ -853,6 +853,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: farLimit
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: nearLimit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       propertyPath: insideColor.b
       value: 0.5176471
       objectReference: {fileID: 0}
@@ -933,6 +941,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8806024725229761119, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 989699463}
+    - targetCorrespondingSourceObject: {fileID: 8806024725229761119, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 989699464}
   m_SourcePrefab: {fileID: 100100000, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
 --- !u!1001 &238699577
 PrefabInstance:
@@ -6544,6 +6555,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &989699464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989699452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1481a96e6b7cda4419cb7ffb2294379e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  downSpeed: 75
+  upSpeed: -250
+  neutralSpeed: 25
+  lerpSpeed: 0.1
 --- !u!4 &995482697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7653108223121546457, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
@@ -14462,6 +14489,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1431432909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431432897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1481a96e6b7cda4419cb7ffb2294379e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  downSpeed: 75
+  upSpeed: -250
+  neutralSpeed: 25
+  lerpSpeed: 0.1
 --- !u!1001 &1466443707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14583,6 +14626,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: farLimit
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: nearLimit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       propertyPath: insideColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -14659,6 +14710,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8806024725229761119, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1431432908}
+    - targetCorrespondingSourceObject: {fileID: 8806024725229761119, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1431432909}
   m_SourcePrefab: {fileID: 100100000, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
 --- !u!1001 &1467395988
 PrefabInstance:
@@ -17980,7 +18034,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f18c3f7e9a6abc4b901630d90297715, type: 3}
   m_Resource: {fileID: 8300000, guid: 8f18c3f7e9a6abc4b901630d90297715, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -18465,6 +18519,14 @@ PrefabInstance:
       propertyPath: m_SortingFudge
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: farLimit
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162770225706439914, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
+      propertyPath: nearLimit
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7522474887949831371, guid: bd3eb068751654f419eb45eb65ac5ea3, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.5
@@ -18789,9 +18851,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1481a96e6b7cda4419cb7ffb2294379e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  downSpeed: 300
-  upSpeed: -1000
-  neutralSpeed: 100
+  downSpeed: 75
+  upSpeed: -250
+  neutralSpeed: 25
   lerpSpeed: 0.1
 --- !u!4 &6918694821245864076 stripped
 Transform:
